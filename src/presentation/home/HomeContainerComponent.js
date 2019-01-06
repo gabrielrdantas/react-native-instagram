@@ -8,7 +8,6 @@
 
 import React, {Component} from 'react';
 import {
-  Dimensions, 
   StyleSheet, 
   FlatList  } from 'react-native';
 
