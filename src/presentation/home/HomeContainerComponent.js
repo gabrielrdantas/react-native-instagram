@@ -14,22 +14,19 @@ import {
 
 import HomePostComponent from './HomePostComponent';
 
-
-const width = Dimensions.get('screen').width;
-
-export default class HomeContainerComponent extends Component<{}> {
+export default class HomeContainerComponent extends Component<> {
   render() {
-    const fotos = [
-      {id: 1, usuario: 'rafael'},
-      {id: 2, usuario: 'alberto'},
-      {id: 3, usuario: 'vitor'}
+    const photos = [
+      {id: 1, usuario: 'Rafael'},
+      {id: 2, usuario: 'Alberto'},
+      {id: 3, usuario: 'Vitor'}
     ];
 
     return (
 
       <FlatList 
         style={styles.container}
-        data={fotos}
+        data={photos}
         keyExtractor={item => `list-item-${item.id}`}
         renderItem={ ({item}) =>
           <HomePostComponent 
