@@ -13,30 +13,30 @@ export default class HomePostComponent extends Component {
   render() {
     return (
      <View>
-         <View style={styles.cabecalho}>
+         <View style={styles.header}>
          <Image 
              source={this.props.profileImage} 
-             style={styles.fotoDePerfil} />
+             style={styles.profileImage} />
          <Text>{this.props.userName}</Text>
          </View>
-         <Image source={this.props.photo} style={styles.foto} />
+         <Image source={this.props.photo} style={styles.photo} />
      </View>
      );
   }
 }
 
 const styles = StyleSheet.create({
-  cabecalho: {
+  header: {
     margin:10, 
     flexDirection: 'row', 
     alignItems: 'center'
   },
-  fotoDePerfil: {
+  profileImage: {
     margin: 10, 
     borderRadius: 20, 
     width:40, height:40
   },
-  foto: {
+  photo: {
     width:width, 
     height:width
   }
