@@ -32,6 +32,7 @@ export default class HomeContainerComponent extends Component<> {
             profileImage={require('../../assets/images/leao.jpg')}
             userName={item.usuario}
             photo={require('../../assets/images/leao.jpg')}
+            isLiked={true}
           />
         }
       />
