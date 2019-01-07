@@ -17,7 +17,8 @@ export default class HomePostComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      likesUsers: props.likesUsers
+      likesUsers: props.likesUsers,
+      textComment: ''
     }
   }
 
@@ -57,6 +58,10 @@ export default class HomePostComponent extends Component {
     );
   }
 
+  addComment() {
+    console.warn(this.state.textComment);
+  }
+
   render() {
     return (
      <View>
@@ -76,14 +81,23 @@ export default class HomePostComponent extends Component {
           {this.showLikes(this.state.likesUsers)}
           {this.showLegend(this.props.legend)}
 
-        {this.props.comments.map(item => 
-          <View style={styles.comment} key={item.userId}>
-            <Text style={styles.titleComment}>{item.userName}</Text>
-            <Text>{item.comment}</Text>
-          </View>
-        )}
+          {this.props.comments.map(item => 
+            <View style={styles.comment} key={item.userId}>
+              <Text style={styles.titleComment}>{item.userName}</Text>
+              <Text>{item.comment}</Text>
+            </View>
+          )}
 
-        <TextInput style={styles.input} placeholder="Adicione um comentário..." />
+          <View style={styles.newComment}>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Adicione um comentário..." 
+            onChangeText={text => this.setState({textComment: text})} 
+            ref={input => this.inputComment = input} />
+            <TouchableOpacity onPress={this.addComment.bind(this)}>
+                <Image style={styles.icon} source={ require('../../assets/images/send.png') } />
+            </TouchableOpacity>
+          </View>
 
         </View>
      </View>
@@ -100,7 +114,8 @@ const styles = StyleSheet.create({
   profileImage: {
     margin: 10, 
     borderRadius: 20, 
-    width:40, height:40
+    width:40, 
+    height:40
   },
   photo: {
     width:width, 
@@ -129,6 +144,7 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   input: {
+    flex: 1,
     height: 40
   },
   comment: {
@@ -137,5 +153,15 @@ const styles = StyleSheet.create({
   titleComment: {
     fontWeight: 'bold',
     marginRight: 5
+  },
+  newComment: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  icon: {
+    width: 30,
+    height: 30
   }
 })
