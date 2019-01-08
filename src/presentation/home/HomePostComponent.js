@@ -18,6 +18,7 @@ export default class HomePostComponent extends Component {
     super(props);
     this.state = {
       likesUsers: props.likesUsers,
+      comments: props.comments,
       textComment: ''
     }
   }
@@ -59,7 +60,22 @@ export default class HomePostComponent extends Component {
   }
 
   addComment() {
-    console.warn(this.state.textComment);
+    if(this.state.textComment === '') {
+      return;
+    }
+    const newList = [
+      ...this.state.comments,
+      {
+        userId: this.state.textComment,
+        userName: 'meuUsuario',
+        comment: this.state.textComment
+      }
+    ];  
+    this.setState({
+      comments: newList,
+      textComment: ''
+    });
+    this.inputComment.clear();
   }
 
   render() {
@@ -81,7 +97,7 @@ export default class HomePostComponent extends Component {
           {this.showLikes(this.state.likesUsers)}
           {this.showLegend(this.props.legend)}
 
-          {this.props.comments.map(item => 
+          {this.state.comments.map(item => 
             <View style={styles.comment} key={item.userId}>
               <Text style={styles.titleComment}>{item.userName}</Text>
               <Text>{item.comment}</Text>
